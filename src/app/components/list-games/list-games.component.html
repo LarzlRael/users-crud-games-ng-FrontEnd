@@ -1,0 +1,45 @@
+<label for="">Ver las publicaciones de : </label>
+<div class="row col-md-4">
+
+    <select name="" id="" class="form-control">
+        <option value="">Todos los usarios</option>
+        <option value="{{user.id_user}}" *ngFor="let user of users">{{user.nombre}}</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <input type="text" placeholder="Buscar Juego por Nombre" class="form-control" [(ngModel)]="titulo"
+        (keyup.enter)="findGames()">
+</div>
+
+
+<div class="card text-center margen">
+    <div class="card-header bg-dark text-white  d-flex justify-content-between align-items-center">
+        {{findGame.titulo}}
+        <button class="btn btn-danger " (click)="deleteGame(findGame.id)"><i class="far fa-trash-alt"></i></button>
+    </div>
+    <img [src]="findGame.url" class="card-img-top" alt="Aqui tiene que ir una imagen">
+    <div class="card-body">
+        <p>{{findGame.descripcion}}</p>
+        <a [routerLink]="['/games/edit',findGame.id]" class="btn btn-info btn-block">Edit Game</a>
+    </div>
+
+
+
+</div>
+<div class="row">
+
+    <div class="col-md-4" *ngFor="let game of ablePost">
+        <div class="card text-center margen">
+            <div class="card-header bg-dark text-white  d-flex justify-content-between align-items-center">
+                {{game.titulo}}
+                <button class="btn btn-danger " (click)="deleteGame(game.id)"><i class="far fa-trash-alt"></i></button>
+            </div>
+            <img src="{{game.url}}" class="card-img-top" alt="Aqui tiene que ir una imagen">
+            <div class="card-body">
+                <p>{{game.descripcion}}</p>
+                <a [routerLink]="['/games/edit',game.id]" class="btn btn-info btn-block">Edit Game</a>
+            </div>
+        </div>
+    </div>
+</div>

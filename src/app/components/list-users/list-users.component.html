@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-md-7">
+        <div class="card card-body">
+            <h1>Nuevo Usuario</h1>
+            <form #formuser="ngForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Ingrese Nombre" [(ngModel)]="user.nombre" name="nombre"
+                        class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Ingrese Apellido" class="form-control" [(ngModel)]="user.apellido"
+                        name="apellido">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Ingrese Email" class="form-control" [(ngModel)]="user.email"
+                        name="email">
+                </div>
+                <button class="btn btn-success btn-block" (click)="newUser(formuser)">Registrar</button>
+            </form>
+        </div>
+        <br><br>
+        <div class="card m-20">
+            <div class="card-body">
+                <table class="table">
+                    <tr class="text-uppercase">
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        
+                        <th>ID</th>
+                    </tr>
+                    <tr *ngFor="let alluser of allusers">
+                        <td>{{alluser.nombre}}</td>
+                        <td>{{alluser.apellido}}</td>
+                        <td>{{alluser.email}}</td>
+                        
+                        <button class="btn btn-info" *ngIf="alluser.habilitado ==0" (click)="habilitar(alluser.id_user)">Habilitar</button>
+                        <button class="btn btn-danger" *ngIf="alluser.habilitado==1"
+                        (click)="deshabilitar(alluser.id_user)"
+                        >Deshablitar</button>
+                        
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+
+        <div class="row">
+            <div class="col-md-4 p-2" *ngFor="let user of users">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="text-center text-uppercase">{{user.nombre}}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>apellido : {{user.apellido}}</p>
+                        <p>Email : {{user.email}}</p>
+                        <p>ID : {{user.id_user}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-danger" (click)="eliminar(user.id_user)">Eliminar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
